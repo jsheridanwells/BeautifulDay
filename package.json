@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node dist/api/bin/www",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,7 +12,8 @@
     "cp:www": "mkdir -p ./dist/api/bin && cp api/bin/www ./dist/api/bin/",
     "cp:swag": "mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api",
     "dev": "concurrently -k \"mongod --quiet\" \"cd ./dist/api && nodemon ./bin/www --watch\" \"ng build --watch\" \"tsc -p ./api/tsconfig.api.json -w\"",
-    "prod": "concurrently -k \"mongod --quiet\" \"npm run clean && npm run cp:www && ng build --aot --prod && tsc -p ./api/tsconfig.api.json && cd ./dist/api && node ./bin/www\""
+    "prod": "concurrently -k \"mongod --quiet\" \"npm run clean && npm run cp:www && ng build --aot --prod && tsc -p ./api/tsconfig.api.json && cd ./dist/api && node ./bin/www\"",
+    "build:img": "ng build --aot --prod && mkdir -p ./dist/api/bin && cp ./api/bin/www ./dist/api/bin && tsc -p ./api/tsconfig.api.json && mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api"
   },
   "private": true,
   "dependencies": {
