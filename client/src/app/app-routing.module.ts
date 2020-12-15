@@ -4,6 +4,7 @@ import { AuthGuard } from './core/guards/authGuard';
 import { AuthComponent } from './layout/auth/auth.component';
 import { ContentComponent } from './layout/content/content.component';
 import { GoogleModule } from './modules/google/google.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 const routes: Routes = [
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
     path: 'home',
     canActivate: [AuthGuard],
     component: ContentComponent,
-    // load children
+    loadChildren: () => ProfileModule
   },
   {
     path: 'auth',

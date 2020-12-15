@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { GoogleService } from '@app/services/google.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private googleService: GoogleService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+
   }
 
+  signOut(): void {
+    this.googleService.signOut()
+      .then(() => this.router.navigate(['/auth']));
+  }
 }

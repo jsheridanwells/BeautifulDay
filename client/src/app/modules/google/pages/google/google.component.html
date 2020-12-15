@@ -6,6 +6,10 @@
     </p>
   </div>
   <div class="google-cmp-action">
-    <button class="btn btn-primary" (click)="testSignIn()">Sign Up With Google</button>
+    <!-- <button class="btn btn-primary" (click)="testSignIn()">Sign Up With Google</button> -->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <button class="btn btn-light google-cmp-signin-btn" (click)="googleSignIn()">
+      <img class="google-cmp-signin-img" src="assets/btn_google.png" alt="Sign in with Google">
+    </button>
   </div>
 </div>

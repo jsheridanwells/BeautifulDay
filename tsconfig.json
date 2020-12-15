@@ -19,7 +19,12 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["client/src/app/core/*"],
+      "@env/*": ["client/src/environments/*"],
+      "@modules/*": ["client/src/app/modules/*"],
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
