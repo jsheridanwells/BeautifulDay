@@ -5,7 +5,8 @@ import { GoogleAuthService } from "ng-gapi";
 
 @Injectable()
 export class GoogleService {
-  public static GOOGLE_SESSION_STORAGE_KEY: string = environment.googleSessionStorageKey;
+  // public static GOOGLE_SESSION_STORAGE_KEY: string = environment.googleSessionStorageKey;
+  public static GOOGLE_SESSION_STORAGE_KEY = 'googleSessionStorageKey';
   constructor(
       private googleAuth: GoogleAuthService
     ) {  }
@@ -25,7 +26,11 @@ export class GoogleService {
 
   async signIn(): Promise<any> {
     return this.googleAuth.getAuth().toPromise()
-      .then(auth => auth.signIn());
+      .then(auth => auth.signIn())
+      .then(user => {
+        const token = user.getAuthResponse().id_token;
+        this.saveSignIn(token);
+      });
   }
 
   async signOut(): Promise<any> {
@@ -37,8 +42,7 @@ export class GoogleService {
       });
   }
 
-  private saveSignIn(res: gapi.auth2.GoogleUser): void {
-    const token = res.getAuthResponse().access_token;
+  private saveSignIn(token: string): void {
     sessionStorage.setItem(GoogleService.GOOGLE_SESSION_STORAGE_KEY, token);
   }
 }

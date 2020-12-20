@@ -24,7 +24,7 @@ export class GoogleComponent implements OnInit {
     });
   }
 
-   googleSignIn() {
+   googleSignIn():void {
     this.googleService.signIn()
       .then(() => {
         return this.authService.validateGoogleSession();

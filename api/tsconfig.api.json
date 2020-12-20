@@ -9,6 +9,8 @@
       "sourceMap": true,
       "types": [
         "node"
-      ]
+      ],
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
     }
   }

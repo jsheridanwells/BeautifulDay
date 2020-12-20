@@ -1,5 +1,7 @@
 import * as mongoose from 'mongoose';
 import { ConnectionOptions } from 'mongoose';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 export function mongo(): void {
   const uri = process.env.MONGO_DSN || 'mongodb://localhost:27017/beautifulDay';
@@ -13,4 +15,3 @@ export function mongo(): void {
   });
 }
 
-// export default mongo;
