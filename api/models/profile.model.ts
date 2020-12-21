@@ -1,8 +1,8 @@
 import * as mongoose from 'mongoose';
-import { Schema, model, MongooseDocument } from 'mongoose';
+import { Schema, model, Model, Document } from 'mongoose';
 
 const ProfileSchema = new Schema({
-  active: Boolean,
+  active: { type: Boolean, default: true },
   userId: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
@@ -10,32 +10,19 @@ const ProfileSchema = new Schema({
   }
 });
 
-export default model('Profile', ProfileSchema);
+export interface Profile {
+  active: boolean;
+  userId: string;
+  user: any;
+}
 
-// This way came from
-// https://medium.com/@agentwhs/complete-guide-for-typescript-for-mongoose-for-node-js-8cc0a7e470c1
-// it's REALLY complicated though, but i'm leaving this here for right now in case there are any
-// other clues to be gleaned.
-// import { Document, Model, model, Schema } from 'mongoose';
+interface ProfileBaseDocument extends Profile, Document {  }
 
-// const ProfileSchema = new Schema({
-//   firstName: {
-//     type: String,
-//     required: true
-//   }
-// });
+export interface ProfileDocument extends ProfileBaseDocument {  }
 
-// export interface Profile {
-//   firstName: string;
-// }
+export interface ProfilePopulatedDocument extends ProfileBaseDocument {  }
 
-// interface ProfileBaseDocument extends Profile, Document {  }
+export interface ProfileModel extends Model<ProfileDocument> {  }
 
-// export interface ProfileDocument extends ProfileBaseDocument {  }
-
-// export interface ProflePopulatedDocument extends ProfileBaseDocument {  }
-
-// export interface ProfileModel extends Model<ProfileDocument> {  }
-
-// export default model<ProfileDocument, ProfileModel>('Profile', ProfileSchema);
+export default model<ProfileDocument, ProfileModel>('Profile', ProfileSchema);
 
