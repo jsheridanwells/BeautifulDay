@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import { Schema, model, Model, Document } from 'mongoose';
+import { UserDocument } from './user.model';
 
 const ProfileSchema = new Schema({
   active: { type: Boolean, default: true },
@@ -13,16 +14,12 @@ const ProfileSchema = new Schema({
 export interface Profile {
   active: boolean;
   userId: string;
-  user: any;
+  user: UserDocument;
 }
 
 interface ProfileBaseDocument extends Profile, Document {  }
-
 export interface ProfileDocument extends ProfileBaseDocument {  }
-
 export interface ProfilePopulatedDocument extends ProfileBaseDocument {  }
-
 export interface ProfileModel extends Model<ProfileDocument> {  }
-
 export default model<ProfileDocument, ProfileModel>('Profile', ProfileSchema);
 

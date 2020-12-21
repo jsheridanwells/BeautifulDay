@@ -4,7 +4,6 @@ dotenv.config();
 
 const secret: Secret = process.env.APP_SECRET || 'UNSAFE TEST SECRET!!!';
 
-// class AppConfig {
 export default {
   appSecret: secret,
   tokenExpiration: 60*60*24, // 24 hours

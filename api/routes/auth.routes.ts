@@ -6,16 +6,15 @@ import { handleGoogleLogin } from '../controllers/userProfile.controller';
 export function authRoutes(): Router {
   const router = express.Router();
   return router.post('/', async(req, res) => {
-    await oAuthClient.verifyIdToken({
-      idToken: req.body.idToken,
-      audience: oAuthClient._clientId
-    })
-    .then((ticket): any => {
-      return handleGoogleLogin(ticket.getPayload());
-    })
-    .then(response => res.send(response))
-    .catch((err: Error) => {
-      return res.status(500).send(err.message);
-    });
+    try {
+      const ticket = await oAuthClient.verifyIdToken({
+	idToken: req.body.idToken,
+	audience: oAuthClient._clientId
+      });
+      const token = await handleGoogleLogin(ticket.getPayload() as TokenPayload);
+      return res.send(token);
+    } catch(err: any) {
+      res.status(401).send();
+    }
   });
 }

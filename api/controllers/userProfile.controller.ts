@@ -1,6 +1,6 @@
-import { createOrGetUserProfile } from '../services/userProfile.service';
+import { getTokenForUser } from '../services/userProfile.service';
+import { TokenResponse } from '../util/jwt';
 
-export async function handleGoogleLogin(tokenAttributes: { envelope?: string, payload?: TokenPayload } | any): Promise<any> {
-  console.log('controller arg:', tokenAttributes);
-  return await createOrGetUserProfile(tokenAttributes);
+export async function handleGoogleLogin(tokenPayload: TokenPayload): Promise<TokenResponse> {
+  return await getTokenForUser(tokenPayload);
 }
