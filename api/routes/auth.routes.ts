@@ -14,7 +14,7 @@ export function authRoutes(): Router {
       const token = await handleGoogleLogin(ticket.getPayload() as TokenPayload);
       return res.send(token);
     } catch(err: any) {
-      res.status(401).send();
+      return res.status(401).send();
     }
   });
 }

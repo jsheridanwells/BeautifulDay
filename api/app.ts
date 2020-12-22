@@ -5,10 +5,12 @@ import * as path from 'path';
 // import * as connectLivereload from 'connect-livereload';
 import * as bodyParser from 'body-parser';
 import { mongo } from './mongo';
+import { authRoutes } from './routes/auth.routes';
 import { routerIndex } from './routes/routerIndex';
 import * as swaggerUi from 'swagger-ui-express';
 // @ts-ignore i don't want to message with tsconfig just yet and this works
 import * as swaggerDoc from './swagger.json';
+import { verifyToken } from './util/jwt';
 
 export default function createApp(): Express {
   const app = express();
@@ -25,13 +27,32 @@ export default function createApp(): Express {
     //         setTimeout(() => livereloadServer.refresh('/'), 100);
     //     });
     // }
-    mongo();
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: false }));
-    app.use(clientDir);
-    app.use('/auth', clientDir);
-    app.use('/home', clientDir);
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
-    app.use('/api', routerIndex());
-    return app;
+  mongo();
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(clientDir);
+  app.use('/auth', clientDir);
+  app.use('/home', clientDir);
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
+  app.use(async (req, res, next) => {
+    try {
+      req.user = null;
+      if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+	const token = req.headers.authorization.split(' ')[1];
+	if (token) {
+	  const tokenResult = await verifyToken(token);
+	  req.user = { email: tokenResult.email, googleSubId: tokenResult.userId };
+	}
+	else {
+	  return res.status(401).send();
+	}
+      }
+      return next();
+    } catch(err: any){
+      return res.status(401).send(err.message);
+    } 
+  })
+  app.use('/auth', authRoutes());
+  app.use('/api', routerIndex());
+  return app;
 }

@@ -1,20 +1,13 @@
-import * as mongoose from 'mongoose';
 import { Schema, model, Model, Document } from 'mongoose';
-import { UserDocument } from './user.model';
 
 const ProfileSchema = new Schema({
   active: { type: Boolean, default: true },
   userId: String,
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
 });
 
 export interface Profile {
   active: boolean;
   userId: string;
-  user: UserDocument;
 }
 
 interface ProfileBaseDocument extends Profile, Document {  }

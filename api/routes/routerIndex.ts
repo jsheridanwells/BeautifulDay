@@ -1,11 +1,19 @@
 import * as express from 'express';
 import { Router } from 'express'
-import { authRoutes } from './auth.routes';
+import { profileRoutes } from './profile.routes';
 
 export function routerIndex(): Router {
     const router = express.Router();
-    // TODO : this is for all protected endpoints
-    router.get('/', (req, res) => res.send('<h1>hi!</h1>'));
-    router.use('/auth', authRoutes());
+    router.use('/', (req, res, next) => next(), requireUser);
+    router.use('/profile', profileRoutes());
     return router;
+}
+
+function requireUser(req, res, next) {
+  if (req.user) {
+    next();
+  }
+  else {
+    res.sendStatus(401);
+  }
 }
