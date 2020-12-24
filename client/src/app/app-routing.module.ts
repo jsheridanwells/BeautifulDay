@@ -9,7 +9,7 @@ import { ProfileModule } from './modules/profile/profile.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth',
+    redirectTo: '/signin',
     pathMatch: 'full'
   },
   {
@@ -19,13 +19,13 @@ const routes: Routes = [
     loadChildren: () => ProfileModule
   },
   {
-    path: 'auth',
+    path: 'signin',
     component: AuthComponent,
     loadChildren: () => GoogleModule
   },
   {
     path: '**',
-    redirectTo: '/auth',
+    redirectTo: '/signin',
     pathMatch: 'full'
   }
 ];

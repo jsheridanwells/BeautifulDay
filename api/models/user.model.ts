@@ -4,9 +4,9 @@ import { ProfileDocument } from './profile.model';
 
 const UserSchema = new Schema({
   email: String,
-  firstName: String,
-  lastName: String,
-  profilePicUrl: String,
+  givenName: String,
+  familyName: String,
+  picture: String,
   googleSubId: String,
   pelotonUsername: { type: String, default: null },
   profile:{
@@ -17,9 +17,9 @@ const UserSchema = new Schema({
 
 export interface User {
   email: string;
-  firstName: string;
-  lastName: string;
-  profilePic: string;
+  givenName: string;
+  familyName: string;
+  picture: string;
   googleSubId: string;
   pelotonUsername: string;
   profile: ProfileDocument;

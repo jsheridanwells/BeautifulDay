@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {UserProfileModel} from '@app/models/userProfile.model';
+import {InfrastructureService} from '@app/services/infrastructure.service';
+import {ProfileService} from '@app/services/profile.service';
+import { ModuleListItem } from '../../core/models/moduleListItem.model';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  moduleList: ModuleListItem[] = [];
+  userProfile: UserProfileModel;
+
+  constructor(
+    private infrastructure: InfrastructureService,
+    private profileService: ProfileService
+  ) { }
 
   ngOnInit(): void {
+    this.infrastructure.getModuleList().subscribe(list => {
+      this.moduleList = list;
+      console.log('list::: ', list);
+    });
+
+    this.profileService.getProfile().subscribe((profile: UserProfileModel) => {
+      this.userProfile = profile;
+    });
   }
 
 }

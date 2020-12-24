@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { ContentComponent } from './layout/content/content.component';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { AuthGuard } from './core/guards/authGuard';
+import { JwtInterceptor } from './core/services/JwtInterceptor';
 
 
 @NgModule({
@@ -28,7 +29,13 @@ import { AuthGuard } from './core/guards/authGuard';
     ProfileModule,
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    // jwtInterceptorProvider
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

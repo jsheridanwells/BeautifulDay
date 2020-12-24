@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
     return this.googleService.checkSignedIn()
       .then(signedIn => {
         if (!signedIn) {
-          this.router.navigate(['/auth']);
+          this.router.navigate(['/signin']);
           return false;
         }
         return true;

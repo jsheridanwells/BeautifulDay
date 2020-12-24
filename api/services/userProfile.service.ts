@@ -32,6 +32,7 @@ async function createUserProfile(tokenPayload: TokenPayload): Promise<any> {
     familyName: tokenPayload.family_name,
     email: tokenPayload.email,
     googleSubId: tokenPayload.sub,
+    picture: tokenPayload.picture,
     profile: profileId
   })
   return await newUserProfile.save();

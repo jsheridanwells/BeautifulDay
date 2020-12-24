@@ -3,19 +3,16 @@ import { Injectable } from "@angular/core";
 import { environment } from '@env/environment';
 import { GoogleAuthService } from "ng-gapi";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GoogleService {
-  // public static GOOGLE_SESSION_STORAGE_KEY: string = environment.googleSessionStorageKey;
-  public static GOOGLE_SESSION_STORAGE_KEY = 'googleSessionStorageKey';
+  public static GOOGLE_SESSION_STORAGE_KEY: string = environment.googleSessionStorageKey;
   constructor(
       private googleAuth: GoogleAuthService
     ) {  }
 
   getToken(): string | null {
-    const token = sessionStorage.getItem(GoogleService.GOOGLE_SESSION_STORAGE_KEY);
-    if (!token) {
-      return null;
-    }
     return sessionStorage.getItem(GoogleService.GOOGLE_SESSION_STORAGE_KEY);
   }
 

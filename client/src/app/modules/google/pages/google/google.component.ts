@@ -24,12 +24,16 @@ export class GoogleComponent implements OnInit {
     });
   }
 
-   googleSignIn():void {
+  googleSignIn():void {
     this.googleService.signIn()
       .then(() => {
         return this.authService.validateGoogleSession();
       })
-      .then(() => this.router.navigate(['/home']));
+      .then(() => this.router.navigate(['/home']))
+      .catch(err => {
+       console.error(err);
+       this.router.navigate(['/signin']);
+     });
   }
 
   async isSignedIn(): Promise<boolean> {
