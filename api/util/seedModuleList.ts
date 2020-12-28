@@ -1,10 +1,10 @@
 import ModuleListItemModel  from '../models/moduleListItem.model';
 
 const moduleList = [
-  new ModuleListItemModel({ name: 'Habits', endpoint: '/habits', link: '/habits', active: false, order: 0 }),
-  new ModuleListItemModel({ name: 'Activity', endpoint: '/activity', link: '/activity', active: true, order: 1 }),
-  new ModuleListItemModel({ name: 'Eating', endpoint: '/eating', link: '/eating', active: true, order: 2, }),
-  new ModuleListItemModel({ name: 'Weight', endpoint: '/weight', link: '/weight', active: true, order: 3 })
+  new ModuleListItemModel({ name: 'Habits', endpoint: '/habits', link: '/habits', active: false, backgroundHex: '#ff0b3', order: 0 }),
+  new ModuleListItemModel({ name: 'Activity', endpoint: '/activity', link: '/activity', active: true, backgroundHex: '#ffcccc', order: 1 }),
+  new ModuleListItemModel({ name: 'Eating', endpoint: '/eating', link: '/eating', active: true, backgroundHex: '#d9ffb3', order: 2, }),
+  new ModuleListItemModel({ name: 'Weight', endpoint: '/weight', link: '/weight', active: true, backgroundHex: '#cceeff', order: 3 })
 ];
 
 export async function seedModuleList() {

@@ -5,6 +5,7 @@ const ModuleListItemSchema = new Schema({
   endpoint: String,
   link: String,
   order: Number,
+  backgroundHex: { type: String, default: '#ffffff' },
   active: { type: Boolean, default: true }
 });
 
@@ -13,6 +14,7 @@ export interface ModuleListItem {
   endpoint: string;
   links: string;
   order: number;
+  backgroundHex: string;
   active: boolean;
 }
 
