@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-// @ts-ignore - stupid linter can't figure out tsconfig paths >:(
 import { environment } from '@env/environment';
 import { GoogleAuthService } from "ng-gapi";
 

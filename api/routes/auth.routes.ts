@@ -8,8 +8,8 @@ export function authRoutes(): Router {
   return router.post('/', async(req, res) => {
     try {
       const ticket = await oAuthClient.verifyIdToken({
-	idToken: req.body.idToken,
-	audience: oAuthClient._clientId
+        idToken: req.body.idToken,
+        audience: oAuthClient._clientId
       });
       const token = await handleGoogleLogin(ticket.getPayload() as TokenPayload);
       return res.send(token);

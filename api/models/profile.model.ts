@@ -2,12 +2,12 @@ import { Schema, model, Model, Document } from 'mongoose';
 
 const ProfileSchema = new Schema({
   active: { type: Boolean, default: true },
-  userId: String,
+  googleSubId: String
 });
 
 export interface Profile {
   active: boolean;
-  userId: string;
+  googleSubId: string;
 }
 
 interface ProfileBaseDocument extends Profile, Document {  }

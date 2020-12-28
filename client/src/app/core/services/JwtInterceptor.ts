@@ -20,7 +20,7 @@ export class JwtInterceptor implements HttpInterceptor {
     const authToken = this.authService.getJwt();
     if (authToken) {
       request = request.clone({
-	setHeaders: { 'Authorization': `Bearer ${ authToken }` }
+        setHeaders: { 'Authorization': `Bearer ${ authToken }` }
       });
     }
     return next.handle(request);

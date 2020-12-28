@@ -5,7 +5,7 @@ import * as path from 'path';
 // import * as connectLivereload from 'connect-livereload';
 import * as bodyParser from 'body-parser';
 import { mongo } from './mongo';
-import { seedModuleList } from './util/seedModuleList';
+// import { seedModuleList } from './util/seedModuleList';
 import { authRoutes } from './routes/auth.routes';
 import { routerIndex } from './routes/routerIndex';
 import * as swaggerUi from 'swagger-ui-express';
@@ -29,7 +29,7 @@ export default function createApp(): Express {
     //     });
     // }
   mongo();
-  seedModuleList();
+  // seedModuleList();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(clientDir);
@@ -40,20 +40,17 @@ export default function createApp(): Express {
     try {
       req.user = null;
       if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-	const token = req.headers.authorization.split(' ')[1];
-	if (token) {
-	  const tokenResult = await verifyToken(token);
-	  req.user = { email: tokenResult.email, googleSubId: tokenResult.userId };
-	}
-	else {
-	  return res.status(401).send();
-	}
+        const token = req.headers.authorization.split(' ')[1];
+        if (token) {
+          const tokenResult = await verifyToken(token);
+          req.user = { email: tokenResult.email, googleSubId: tokenResult.userId };
+        }
       }
       return next();
     } catch(err: any){
-      return res.status(401).send(err.message);
-    } 
-  })
+      return res.status(401).send(err);
+    }
+  });
   app.use('/auth', authRoutes());
   app.use('/api', routerIndex());
   return app;

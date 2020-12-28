@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GoogleService } from '@app/services/google.service';
-import { AuthService } from 'client/src/app/core/services/auth.service';
+// import { AuthService } from 'client/src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-google',
@@ -13,7 +13,7 @@ export class GoogleComponent implements OnInit {
 
   constructor(
     private googleService: GoogleService,
-    private authService: AuthService,
+    // private authService: AuthService,
     private router: Router
   ) { }
 
@@ -26,9 +26,9 @@ export class GoogleComponent implements OnInit {
 
   googleSignIn():void {
     this.googleService.signIn()
-      .then(() => {
-        return this.authService.validateGoogleSession();
-      })
+      // .then(() => {
+      //   return this.authService.validateGoogleSession();
+      // })
       .then(() => this.router.navigate(['/home']))
       .catch(err => {
        console.error(err);

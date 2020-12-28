@@ -7,6 +7,12 @@ export interface TokenObject {
 }
 
 export interface TokenResponse {
+  givenName?: string
+  familyName?: string;
+  email?: string
+  sub?: string;
+  picture?: string;
+  profileId?: any;
   token: string;
 }
 
