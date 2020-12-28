@@ -11,7 +11,7 @@
     "clean": "rm -rf ./dist/api && rm -rf ./dist/public/",
     "cp:www": "mkdir -p ./dist/api/bin && cp api/bin/www ./dist/api/bin/",
     "cp:swag": "mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api",
-    "dev": "concurrently -k \"cd ./dist/api && nodemon ./bin/www --watch\" \"ng build --watch\" \"tsc -p ./api/tsconfig.api.json -w\"",
+    "dev": "concurrently -k \"tsc -p ./api/tsconfig.api.json -w\" \"cd ./dist/api && nodemon ./bin/www --watch\" \"ng build --watch\"",
     "prod": "concurrently -k \"npm run clean && npm run cp:www && npm run cp:swag && ng build --aot --prod && tsc -p ./api/tsconfig.api.json && cd ./dist/api && node ./bin/www\"",
     "build:img": "ng build --aot --prod && mkdir -p ./dist/api/bin && cp ./api/bin/www ./dist/api/bin && tsc -p ./api/tsconfig.api.json && mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api"
   },
@@ -37,6 +37,7 @@
     "mongoose": "^5.10.18",
     "ng-gapi": "0.0.94",
     "rxjs": "~6.6.0",
+    "scss-scaffold": "0.0.5",
     "swagger-ui-express": "^4.1.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
