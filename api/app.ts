@@ -43,7 +43,9 @@ export default function createApp(): Express {
         const token = req.headers.authorization.split(' ')[1];
         if (token) {
           const tokenResult = await verifyToken(token);
-          req.user = { email: tokenResult.email, googleSubId: tokenResult.userId };
+          if (tokenResult) {
+            req.user = { googleSubId: tokenResult.googleSubId, profileId: tokenResult.profileId };
+          }
         }
       }
       return next();

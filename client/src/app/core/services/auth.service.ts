@@ -29,7 +29,7 @@ export class AuthService {
           return res;
         }))
     } else {
-      throw new Error();
+      throw new Error('Invalid Google session.');
     }
   }
 

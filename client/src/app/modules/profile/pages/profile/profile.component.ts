@@ -17,13 +17,22 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.validateGoogleSession().subscribe(res => {
-      console.log('res from profile component', res);
-    },
-      error => {
-        console.error(error);
+    try {
+      this.authService.validateGoogleSession().subscribe(res => {
+        console.log('res from profile component', res);
+      },
+      err => {
+        console.error('err from observable?', err);
+        this.googleService.signOut().then(() => {
+          this.router.navigate(['/signin']);
+        });
+      });
+    } catch (err) {
+      console.error('or err in catch?', err);
+      this.googleService.signOut().then(() => {
         this.router.navigate(['/signin']);
       });
+    }
   }
 
   signOut(): void {

@@ -2,9 +2,13 @@ import * as jwt from 'jsonwebtoken';
 import appConfig from '../config/app.config'
 
 export interface TokenObject {
-  email: string;
-  userId: string;
+  profileId: string;
+  googleSubId: string;
 }
+// export interface TokenObject {
+//   email: string;
+//   userId: string;
+// }
 
 export interface TokenResponse {
   givenName?: string

@@ -4,6 +4,14 @@ declare module 'swagger.json';
 
 declare namespace Express {
   export interface Request {
-    user?: { email: string, googleSubId: string } | null
+    user?: { googleSubId: string | null, profileId: string | null } | null
   }
+}
+
+declare type TokenPayload = {
+  given_name: string;
+  family_name: string;
+  email: string;
+  sub: string;
+  picture: string;
 }
