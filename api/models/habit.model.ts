@@ -3,12 +3,33 @@ import { Schema, model, Model, Document } from 'mongoose';
 import * as dayjs from 'dayjs';
 import { Dayjs } from 'dayjs';
 
+enum NumericTypes {
+  quantity = 'quantity',
+  percentage = 'percentage',
+  timespan = 'timespan',
+  binary = 'binary',
+}
+
+enum GoalTypes {
+  dailyMax = 'dailyMax',
+  dailyMin = 'dailyMin',
+  futureDate = 'futureDate'
+}
+
 const HabitSchema = new Schema({
   profileId: mongoose.Schema.Types.ObjectId,
   name: String,
   frequency: { type: String, default: 'M;T;W;R;F;S;D' },
   startDate: { type: Date, default: getDefaultStartDate },
-  endDate: { type: Date, default: getDefaultEndDate }
+  endDate: Date,
+  measurement: [{
+    unit: String,
+    numericType: { type: String, enum: Object.values(NumericTypes), default: NumericTypes.quantity },
+    visible: Boolean,
+    goal: Number,
+    goalType: { type: String, enum: Object.values(GoalTypes), default: GoalTypes.futureDate },
+    goalDate: Date
+  }]
 });
 
 export interface Habit {
@@ -17,6 +38,17 @@ export interface Habit {
   frequency: string;
   startDate: Date;
   endDate?: Date;
+  measurement: Measurement;
+}
+
+
+export interface Measurement {
+  unit: string;
+  numericType: NumericTypes;
+  visible: boolean;
+  goal: number;
+  goalType: GoalTypes;
+  goalDate?: Date;
 }
 
 interface HabitBaseDocument extends Habit, Document {  }
@@ -29,6 +61,3 @@ function getDefaultStartDate(): Dayjs {
   return dayjs();
 }
 
-function getDefaultEndDate(): Dayjs {
-  return dayjs().add(30, 'day');
-}

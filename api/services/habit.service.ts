@@ -1,8 +1,8 @@
 import HabitModel, { Habit, HabitDocument } from '../models/habit.model';
 
 export async function createHabit(habitData: any, profileId: string): Promise<Habit> {
-  console.log('create habit args', habitData, profileId);
   const habit = { ...habitData, profileId };
+  console.log('create habit args', habitData, profileId);
   const newHabit = new HabitModel(habit);
   return newHabit.save();
 }

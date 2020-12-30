@@ -10,8 +10,7 @@ export function routerIndex(): Router {
 }
 
 function requireUser(req: Request, res: Response, next: NextFunction): void {
-  if (req.user){
-    console.log('user?', req.user);
+  if (req.user) {
     next();
   }
   else
