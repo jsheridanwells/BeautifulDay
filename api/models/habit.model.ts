@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 import { Schema, model, Model, Document } from 'mongoose';
 import * as dayjs from 'dayjs';
 import { Dayjs } from 'dayjs';
+import { LogEntry } from './logEntry.model';
 
 enum NumericTypes {
   quantity = 'quantity',
@@ -29,7 +30,13 @@ const HabitSchema = new Schema({
     goal: Number,
     goalType: { type: String, enum: Object.values(GoalTypes), default: GoalTypes.futureDate },
     goalDate: Date
-  }]
+  }],
+  logEntries: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'LogEntry'
+    }
+  ]
 });
 
 export interface Habit {
@@ -39,8 +46,8 @@ export interface Habit {
   startDate: Date;
   endDate?: Date;
   measurement: Measurement;
+  logEntries: LogEntry[];
 }
-
 
 export interface Measurement {
   unit: string;
@@ -57,6 +64,7 @@ export interface HabitPopulatedDocument extends HabitBaseDocument {  }
 export interface HabitModel extends Model<HabitDocument> {  }
 export default model<HabitDocument, HabitModel>('Habit', HabitSchema);
 
+// helper function to return fresh Dayjs object for schemas
 function getDefaultStartDate(): Dayjs {
   return dayjs();
 }

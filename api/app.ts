@@ -50,7 +50,7 @@ export default function createApp(): Express {
       }
       return next();
     } catch(err: any){
-      return res.status(401).send(err);
+      return res.status(500).send(err);
     }
   });
   app.use('/auth', authRoutes());

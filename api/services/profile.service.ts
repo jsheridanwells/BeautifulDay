@@ -10,14 +10,10 @@ export async function getTokenForUser(tokenPayload: TokenPayload): Promise<Token
     profileId: checkProfile._id,
     googleSubId: tokenPayload.sub
   };
-  // const tokenObj: TokenObject = {
-  //   email: tokenPayload.email,
-  //   userId: tokenPayload.sub
-  // }
   const token = createToken(tokenObj);
   const tokenResponse: TokenResponse = { ...createToken(tokenObj),
     givenName: tokenPayload.given_name,
-    familyName: tokenPayload.given_name,
+    familyName: tokenPayload.family_name,
     email: tokenPayload.email,
     picture: tokenPayload.picture,
     profileId: checkProfile._id,

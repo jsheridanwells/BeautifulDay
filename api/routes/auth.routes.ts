@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { Router, Request, Response } from 'express'
 import oAuthClient from '../util/googleOauth';
-import { handleGoogleLogin } from '../controllers/userProfile.controller';
+import { getTokenForUser } from '../services/profile.service';
 
 export function authRoutes(): Router {
   const router = express.Router();
@@ -11,10 +11,14 @@ export function authRoutes(): Router {
         idToken: req.body.idToken,
         audience: oAuthClient._clientId
       });
-      const token = await handleGoogleLogin(ticket.getPayload() as TokenPayload);
-      return res.send(token);
+      const tokenResponse = await getTokenForUser(ticket.getPayload() as TokenPayload);
+      if(tokenResponse) {
+        return res.send(tokenResponse);
+      } else {
+        return res.status(401).send();
+      }
     } catch(err: any) {
-      return res.status(401).send();
+      return res.status(500).send(err);
     }
   });
 }
