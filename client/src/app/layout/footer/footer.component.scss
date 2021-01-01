@@ -1,7 +1,8 @@
 @import 'colors';
 .footer-container {
-  // border: 1px solid red;
   height: 2rem;
+  background-color: $primaryDark;
+  font-weight: bold;
 }
 
 .link {
