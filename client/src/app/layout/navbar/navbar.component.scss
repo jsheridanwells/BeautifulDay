@@ -1,0 +1,45 @@
+.navbar {
+  min-height: 3rem;
+  display: flex;
+  flex-direction: row;
+}
+
+h1.logo {
+  font-size: 1.5rem;
+}
+
+.hamburger-menu {
+  border: 1px solid blue;
+}
+
+.nav-menu {
+  border: 1px solid green;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 75%;
+  background-color: rgba(100, 100, 100, 0.8);
+  display: none;
+}
+
+.nav-menu-show {
+  display: inherit;
+}
+
+// .nav-menu-hide {
+//   display: none;
+// }
+
+ul {
+  border: 1px solid blue;
+  list-style-type: none;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+  display: block;
+  padding-left: 1rem;
+  text-align: center;
+}
+

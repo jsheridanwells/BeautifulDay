@@ -1,0 +1,14 @@
+<div class="navbar">
+  <h1 class="logo">Beautiful Days</h1>
+  <div class="hamburger-menu" (click)="toggleHamburgerMenu()">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </div>
+  <div class="nav-menu" [ngClass]="{ 'nav-menu-show': showMenu }">
+    <button (click)="toggleHamburgerMenu()"><fa-icon [icon]="faTimes"></fa-icon></button>
+    <ul>
+      <li>
+        <button (click)="requestSignOut()">Sign Out</button>
+      </li>
+    </ul>
+  </div>
+</div>

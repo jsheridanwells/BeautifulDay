@@ -1,8 +1,8 @@
 import * as express from 'express';
 import { Express } from 'express';
 import * as path from 'path';
-// import * as livereload from 'livereload';
-// import * as connectLivereload from 'connect-livereload';
+import * as livereload from 'livereload';
+import * as connectLivereload from 'connect-livereload';
 import * as bodyParser from 'body-parser';
 import { mongo } from './mongo';
 // import { seedModuleList } from './util/seedModuleList';
@@ -16,18 +16,18 @@ import { verifyToken } from './util/jwt';
 export default function createApp(): Express {
   const app = express();
   const clientDir = express.static(path.join(__dirname, '../public'));
-  // This was supposed to refresh the browser when the client code changed
-  // but Google Chrome right now doesn't like the script loading policy.
-  // Nice to have, but more trouble than it's worth.
-  // let livereloadServer: any;
-    // if (process.env.NODE_ENV !== 'production') {
-    //     livereloadServer = livereload.createServer();
-    //     livereloadServer.watch(path.join(__dirname, '../public'));
-    //     app.use(connectLivereload());
 
-    //         setTimeout(() => livereloadServer.refresh('/'), 100);
-    //     });
-    // }
+  // in development, refresh angular on save just like ng serve does
+  let livereloadServer: any;
+  if (process.env.NODE_ENV !== 'production') {
+      livereloadServer = livereload.createServer();
+      livereloadServer.watch(path.join(__dirname, '../public'));
+      app.use(connectLivereload());
+      livereloadServer.once('connection', () => {
+              setTimeout(() => livereloadServer.refresh('/'), 100);
+      });
+  }
+
   mongo();
   // seedModuleList();
   app.use(bodyParser.json());

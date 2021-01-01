@@ -30,6 +30,11 @@
             "styles": [
               "client/src/styles/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "client/src/styles/var"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

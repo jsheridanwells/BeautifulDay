@@ -1,26 +1,22 @@
 .auth-layout-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding: 0;
 }
 
 .auth-layout-header {
-  padding: 2rem;
   text-align: center;
 }
 
 .auth-layout-router-container {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin: auto 2rem;
-  min-width: 30rem;
+  flex: 1 0 auto;
+  width: 100%;
 }
 
 .auth-layout-footer {
-  display: flex;
-  flex-direction: row;
-  align-self: center;
   font-size: 0.8rem;
+  flex-shrink: 0;
+  width: 100%;
 }
 

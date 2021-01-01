@@ -4,14 +4,14 @@ import * as dayjs from 'dayjs';
 import { Dayjs } from 'dayjs';
 import { LogEntry } from './logEntry.model';
 
-enum NumericTypes {
+export enum NumericTypes {
   quantity = 'quantity',
   percentage = 'percentage',
   timespan = 'timespan',
   binary = 'binary',
 }
 
-enum GoalTypes {
+export enum GoalTypes {
   dailyMax = 'dailyMax',
   dailyMin = 'dailyMin',
   futureDate = 'futureDate'

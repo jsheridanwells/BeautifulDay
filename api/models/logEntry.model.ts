@@ -6,7 +6,7 @@ const LogEntrySchema = new Schema({
   active: { type: Boolean, default: true },
   value: Number,
   entryDate: Date,
-  note: { type: String, maxlength: 140 }
+  note: { type: String, maxlength: 140 },
 });
 
 export interface LogEntry {

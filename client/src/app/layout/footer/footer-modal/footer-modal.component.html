@@ -1,0 +1,27 @@
+<div class="footer-modal-container">
+  <div class="modal-header">
+    <h4>Disclaimer</h4>
+      <button type="button" class="close" aria-label="Close"
+        (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="copyType === 'privacy'">
+      <p>
+        This web application is a demo project. This application is being released "as-is" -
+        without any warrany, responsibility, or liability.
+      </p>
+    </div>
+    <div *ngIf="copyType === 'disclaimer'">
+      <p>
+        This web application uses cookies. You can the <a
+          href="https://www.termsfeed.com/live/18ab46d8-70e1-4963-8b3e-e29f90ce2570"
+          target="_blank">full cookie policy</a>
+      </p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.close('Close click')">Close</button>
+  </div>
+</div>
