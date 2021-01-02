@@ -1,14 +1,24 @@
 <div class="navbar">
   <h1 class="logo">Beautiful Days</h1>
-  <div class="hamburger-menu" (click)="toggleHamburgerMenu()">
-    <fa-icon [icon]="faBars"></fa-icon>
-  </div>
-  <div class="nav-menu" [ngClass]="{ 'nav-menu-show': showMenu }">
-    <button (click)="toggleHamburgerMenu()"><fa-icon [icon]="faTimes"></fa-icon></button>
-    <ul>
-      <li>
-        <button (click)="requestSignOut()">Sign Out</button>
-      </li>
-    </ul>
+  <div ngbDropdown>
+    <div class="hamburger-menu" role="button" ngbDropdownToggle>
+      <fa-icon [icon]="faCog"></fa-icon>
+    </div>
+    <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+      <div *ngIf="currentProfile">
+        <ul>
+          <li>
+            {{ currentProfile.givenName }}
+          </li>
+          <li>
+            {{ currentProfile.familyName }}
+          </li>
+          <li>
+            {{ currentProfile.email }}
+          </li>
+        </ul>
+      </div>
+      <button class="btn btn-light"(click)="requestSignOut()" ngbDropdownItem>Sign Out</button>
+    </div>
   </div>
 </div>

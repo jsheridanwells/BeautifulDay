@@ -1,37 +1,43 @@
+@import 'colors';
+
 .navbar {
   min-height: 3rem;
   display: flex;
   flex-direction: row;
+  background-color: $primary;
 }
 
 h1.logo {
   font-size: 1.5rem;
+  font-family: 'Josefins Sans';
 }
 
-.hamburger-menu {
-  border: 1px solid blue;
-}
+// .hamburger-menu {
+
+// }
 
 .nav-menu {
-  border: 1px solid green;
   position: absolute;
   top: 0;
   right: 0;
+  min-height: 10rem;
   width: 75%;
-  background-color: rgba(100, 100, 100, 0.8);
+  border: 1px solid $c-gray-90;
+  background-color: #ffffff;
   display: none;
 }
 
 .nav-menu-show {
-  display: inherit;
+  display: initial;
 }
 
-// .nav-menu-hide {
-//   display: none;
-// }
+.nav-menu-top {
+  display: flex;
+  direction: row;
+  align-items: flex-end;
+}
 
 ul {
-  border: 1px solid blue;
   list-style-type: none;
   margin: 0;
 }

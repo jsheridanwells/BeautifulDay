@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FontAwesomeModule  } from '@fortawesome/angular-fontawesome';
-
 import { AppRoutingModule } from './app-routing.module';
+import { NgbModule  } from '@ng-bootstrap/ng-bootstrap';
 import { GoogleModule } from './modules/google/google.module';
 import { AppComponent } from './app.component';
 import { ProfileModule } from './modules/profile/profile.module';
@@ -29,6 +30,7 @@ import { FooterModalComponent } from './layout/footer/footer-modal/footer-modal.
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
+    NgbModule,
     GoogleModule,
     ProfileModule,
   ],

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@app/services/auth.service';
 import { GoogleService } from '@app/services/google.service';
+import { ProfileModel } from '@app/models/profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -16,19 +17,14 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
+  currentProfile: ProfileModel | null;
+
+  async ngOnInit() {
     try {
-      this.authService.validateGoogleSession().subscribe(res => {
-        console.log('res from profile component', res);
-      },
-      err => {
-        console.error('err from observable?', err);
-        this.googleService.signOut().then(() => {
-          this.router.navigate(['/signin']);
-        });
-      });
+      await this.authService.validateGoogleSession();
+      this.authService.profileSubject.subscribe(profile => this.currentProfile = profile);
     } catch (err) {
-      console.error('or err in catch?', err);
+      console.error(err);
       this.googleService.signOut().then(() => {
         this.router.navigate(['/signin']);
       });

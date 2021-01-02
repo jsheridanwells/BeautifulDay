@@ -1,3 +1,6 @@
+
+// TODO : delete this class. All this is being don in Auth service now
+
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {UserProfileModel} from '@app/models/userProfile.model';
