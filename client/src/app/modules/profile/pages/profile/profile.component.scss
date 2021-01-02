@@ -1,0 +1,39 @@
+@import 'colors';
+@import 'media';
+
+.profile-container {
+  text-align: center;
+  height: calc(100vh - $navHeight);
+}
+
+.greeting {
+  margin: auto;
+  padding: 3rem 1rem;;
+  background-color: $primaryLight;
+}
+
+.intro {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-bottom: 1px solid $c-gray-80;
+}
+
+ul.habit-list {
+  padding: 0;
+  list-style-type: none;
+  overflow-y: scroll;
+  max-height: 500px; // figure out how to make this relative >:(
+}
+
+li.habit-list-item {
+  display: block;
+  margin: 0;
+  padding: 1rem 0.2rem;
+}
+li:nth-child(odd) {
+  background-color: $secondaryLight;
+}
+
+.scrollable {
+  overflow: hidden;
+}

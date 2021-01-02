@@ -24,11 +24,12 @@ export class AuthService {
   async validateGoogleSession(): Promise<any> {
     const idToken = sessionStorage.getItem(AuthService.GOOGLE_SESSION_STORAGE_KEY);
     if (idToken) {
-      this.http.post<ProfileModel>('/auth', { idToken })
-        .subscribe(res => {
-          this.profileSubject.next(res);
+      return this.http.post<ProfileModel>('/auth', { idToken }).toPromise()
+        .then(res => {
           this.saveJwt(res.token);
-        }, err => console.error(err));
+          this.profileSubject.next(res);
+        })
+        .catch(err => console.error(err));
     } else {
       throw new Error('Invalid Google authentication.');
     }
@@ -39,6 +40,7 @@ export class AuthService {
   }
 
   private saveJwt(jwt: string | undefined): void {
+    console.log('saving jwt?', jwt);
     if (jwt) {
       localStorage.setItem(AuthService.JWT_KEY, jwt);
     }

@@ -6,19 +6,15 @@
     </div>
     <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
       <div *ngIf="currentProfile">
-        <ul>
-          <li>
-            {{ currentProfile.givenName }}
-          </li>
-          <li>
-            {{ currentProfile.familyName }}
-          </li>
-          <li>
-            {{ currentProfile.email }}
-          </li>
-        </ul>
+        <p class="dropdown-profile-name">
+          {{ currentProfile.givenName }} {{ currentProfile.familyName }}
+        </p>
+        <div class="profile-picture wrapper">
+          <img [src]="currentProfile.picture" class="profile-picture" alt="Profile picture">
+        </div>
       </div>
-      <button class="btn btn-light"(click)="requestSignOut()" ngbDropdownItem>Sign Out</button>
+      <!-- <button class="btn btn-light"(click)="requestSignOut()" ngbDropdownItem>Sign Out</button> -->
+      <a class="bt btn-light sign-out" role="button" (click)="requestSignOut()">Sign Out</a>
     </div>
   </div>
 </div>

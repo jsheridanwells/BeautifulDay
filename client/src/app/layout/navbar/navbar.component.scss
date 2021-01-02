@@ -1,7 +1,8 @@
 @import 'colors';
+@import 'media';
 
 .navbar {
-  min-height: 3rem;
+  min-height: $navHeight;
   display: flex;
   flex-direction: row;
   background-color: $primary;
@@ -12,40 +13,29 @@ h1.logo {
   font-family: 'Josefins Sans';
 }
 
-// .hamburger-menu {
-
-// }
-
-.nav-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-height: 10rem;
-  width: 75%;
-  border: 1px solid $c-gray-90;
-  background-color: #ffffff;
-  display: none;
-}
-
-.nav-menu-show {
-  display: initial;
-}
-
-.nav-menu-top {
+.nav-dropdown {
   display: flex;
-  direction: row;
-  align-items: flex-end;
+  flex-direction: column;
 }
-
-ul {
-  list-style-type: none;
-  margin: 0;
-}
-
-li {
-  margin: 0;
-  display: block;
-  padding-left: 1rem;
+p.dropdown-profile-name {
+  font-size: 0.8rem;
   text-align: center;
 }
 
+.profile-picture-wrapper {
+  width: 100%;
+  text-align: center;
+}
+
+img.profile-picture {
+  display: block;
+  margin: 1px auto;
+  border-radius: 100%;
+}
+
+a.sign-out {
+  display: block;
+  margin: 5px auto;
+  width: 80%;
+  text-align: center;
+}

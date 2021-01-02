@@ -24,3 +24,6 @@ $lgDesktopMin: 1920px;
     @media (min-width: $lgDesktopMin) { @content;  }
 
 }
+
+// CONSTANTS
+$navHeight: 3rem;
