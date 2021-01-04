@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faBars, faTimes, faCog, IconDefinition  } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faCog, faPlus, IconDefinition  } from '@fortawesome/free-solid-svg-icons';
 import { GoogleService } from '@app/services/google.service';
 import { AuthService } from '@app/services/auth.service';
 import { ProfileModel } from '@app/models/profile.model';
@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
 
   faBars: IconDefinition = faBars;
   faTimes: IconDefinition = faTimes;
+  faPlus: IconDefinition = faPlus;
   faCog: IconDefinition = faCog;
   showMenu: boolean = false
   currentProfile: ProfileModel | null;

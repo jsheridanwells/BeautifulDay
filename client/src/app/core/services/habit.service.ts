@@ -18,4 +18,8 @@ export class HabitService {
     return this.http.get<HabitModel[]>(this.endpoint);
   }
 
+  createHabit(habit: any) {
+    return this.http.post<any>(this.endpoint, habit).toPromise();
+  }
+
 }

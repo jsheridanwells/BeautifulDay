@@ -5,6 +5,7 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { ContentComponent } from './layout/content/content.component';
 import { GoogleModule } from './modules/google/google.module';
 import { ProfileModule } from './modules/profile/profile.module';
+import { HabitModule } from './modules/habit/habit.module';
 
 const routes: Routes = [
   {
@@ -17,6 +18,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     component: ContentComponent,
     loadChildren: () => ProfileModule
+  },
+  {
+    path: 'habit',
+    canActivate: [AuthGuard],
+    component: ContentComponent,
+    loadChildren: () => HabitModule
   },
   {
     path: 'signin',

@@ -1,0 +1,28 @@
+<div class="habit-container">
+  <form [formGroup]="habitForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="frequency">Frequency:</label>
+      <input type="text" class="form-control" id="frequency" formControlName="frequency">
+    </div>
+    <div class="form-group">
+      <label for="start-date">Start Date:</label>
+      <input type="date" class="form-control" id="start-date" placeholder="yyyy-mm-dd"
+      formControlName="startDate">
+    </div>
+    <div class="form-group">
+      <label for="end-date">End Date:</label>
+      <input type="date" class="form-control" id="end-date" placeholder="yyyy-mm-dd"
+      formControlName="endDate">
+    </div>
+    <div class="d-flex justify-content-end action-bar">
+      <button type="button" class="btn btn-primary create-habit-btn" (click)="onSubmit()">
+        Create habit
+      </button>
+    </div>
+  </form>
+</div>
+

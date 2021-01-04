@@ -8,7 +8,13 @@ export class AuthGuard implements CanActivate {
     private googleService: GoogleService,
     private router: Router
   ) {  }
+
   canActivate(): boolean | Promise<boolean>  {
+    const session = this.googleService.getToken();
+    console.log('authguard check session', session);
+    if (!session) {
+      this.router.navigate(['/signin']);
+    }
     return this.googleService.checkSignedIn()
       .then(signedIn => {
         if (!signedIn) {

@@ -13,10 +13,20 @@ h1.logo {
   font-family: 'Josefins Sans';
 }
 
+.logo-col {
+  flex-grow: 2;
+}
+
+.button-col {
+  flex-grow: 1;
+  text-align: right;
+}
+
 .nav-dropdown {
   display: flex;
   flex-direction: column;
 }
+
 p.dropdown-profile-name {
   font-size: 0.8rem;
   text-align: center;

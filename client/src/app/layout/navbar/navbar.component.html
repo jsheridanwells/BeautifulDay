@@ -1,20 +1,31 @@
 <div class="navbar">
-  <h1 class="logo">Beautiful Days</h1>
-  <div ngbDropdown>
-    <div class="hamburger-menu" role="button" ngbDropdownToggle>
-      <fa-icon [icon]="faCog"></fa-icon>
-    </div>
-    <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
-      <div *ngIf="currentProfile">
-        <p class="dropdown-profile-name">
-          {{ currentProfile.givenName }} {{ currentProfile.familyName }}
-        </p>
-        <div class="profile-picture wrapper">
-          <img [src]="currentProfile.picture" class="profile-picture" alt="Profile picture">
-        </div>
+  <div class="logo-col">
+    <a routerLink="/home">
+      <h1 class="logo">Beautiful Days</h1>
+    </a>
+  </div>
+  <div class="button-col">
+    <a routerLink="/habit/new" role="button">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </a>
+  </div>
+  <div class="button-col">
+    <div ngbDropdown>
+      <div class="hamburger-menu" role="button" ngbDropdownToggle>
+        <fa-icon [icon]="faCog"></fa-icon>
       </div>
-      <!-- <button class="btn btn-light"(click)="requestSignOut()" ngbDropdownItem>Sign Out</button> -->
-      <a class="bt btn-light sign-out" role="button" (click)="requestSignOut()">Sign Out</a>
+      <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+        <div *ngIf="currentProfile">
+          <p class="dropdown-profile-name">
+            {{ currentProfile.givenName }} {{ currentProfile.familyName }}
+          </p>
+          <div class="profile-picture wrapper">
+            <img [src]="currentProfile.picture" class="profile-picture" alt="Profile picture">
+          </div>
+        </div>
+        <a class="bt btn-light sign-out" role="button" (click)="requestSignOut()">Sign Out</a>
+      </div>
     </div>
   </div>
 </div>
+

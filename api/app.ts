@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Express } from 'express';
+import { Express  } from 'express';
 import * as path from 'path';
 import * as livereload from 'livereload';
 import * as connectLivereload from 'connect-livereload';
@@ -9,7 +9,7 @@ import { mongo } from './mongo';
 import { authRoutes } from './routes/auth.routes';
 import { routerIndex } from './routes/routerIndex';
 import * as swaggerUi from 'swagger-ui-express';
-// @ts-ignore i don't want to message with tsconfig just yet and this works
+// @ts-ignore i don't want to mess with tsconfig just yet and this works
 import * as swaggerDoc from './swagger.json';
 import { verifyToken } from './util/jwt';
 
@@ -35,6 +35,8 @@ export default function createApp(): Express {
   app.use(clientDir);
   app.use('/signin', clientDir);
   app.use('/home', clientDir);
+  app.use('/habit', clientDir);
+  app.use('/habit/new', clientDir);
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
   app.use(async (req, res, next) => {
     try {
@@ -55,5 +57,6 @@ export default function createApp(): Express {
   });
   app.use('/auth', authRoutes());
   app.use('/api', routerIndex());
+  app.use((req, res) => res.status(404).send('not found :('));
   return app;
 }
