@@ -5,7 +5,6 @@ import * as livereload from 'livereload';
 import * as connectLivereload from 'connect-livereload';
 import * as bodyParser from 'body-parser';
 import { mongo } from './mongo';
-// import { seedModuleList } from './util/seedModuleList';
 import { authRoutes } from './routes/auth.routes';
 import { routerIndex } from './routes/routerIndex';
 import * as swaggerUi from 'swagger-ui-express';
@@ -29,7 +28,6 @@ export default function createApp(): Express {
   }
 
   mongo();
-  // seedModuleList();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(clientDir);

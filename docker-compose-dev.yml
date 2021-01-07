@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    container_name: bd_mongo
+    image: mongo:latest
+    volumes:
+      - ./data/db:/data/db
+      - ./mongo:/docker-entrypoint-initdb.d
+    ports:
+      - "28017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_INITDB_ROOT_PASSWORD
+      - BD_USER=$BD_USER
+      - BD_PWD=$BD_PWD
+

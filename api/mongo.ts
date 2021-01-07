@@ -1,10 +1,8 @@
 import * as mongoose from 'mongoose';
 import { ConnectionOptions } from 'mongoose';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 export function mongo(): void {
-  const uri = process.env.MONGO_DSN || 'mongodb://localhost:27017/beautifulDay';
+  const uri = buildUri();
   const mongoConfig: ConnectionOptions = {
     useUnifiedTopology: true,
     useNewUrlParser: true
@@ -12,6 +10,18 @@ export function mongo(): void {
 
   mongoose.connect(uri, mongoConfig).then(() => {
       console.log('Application is connected to MongoDb.');
-  });
+  })
+  .catch(err => console.error('Mongoose error ::: ', err));
 }
+
+// Build connection string for Mongoose based on current env.
+function buildUri(): string {
+  const appUsername = process.env.BD_USER;
+  const appPassword = process.env.BD_PWD;
+  const host = process.env.DB_HOST || 'localhost';
+  const port = process.env.DB_PORT || 28017;
+  const dbName = process.env.DB_NAME || 'beautifulDay';
+  return `mongodb://${ appUsername }:${ appPassword }@${ host }:${ port }/${ dbName }`;
+}
+
 

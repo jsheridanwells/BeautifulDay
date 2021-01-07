@@ -157,4 +157,5 @@ dist
 # vim
 *.swp
 *.swo
+*.swn
 *~
