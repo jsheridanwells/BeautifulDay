@@ -16,8 +16,8 @@ export function mongo(): void {
 
 // Build connection string for Mongoose based on current env.
 function buildUri(): string {
-  const appUsername = process.env.BD_USER;
-  const appPassword = process.env.BD_PWD;
+  const appUsername = process.env.BD_USER || 'bdUser';
+  const appPassword = process.env.BD_PWD || 'bdUser()';
   const host = process.env.DB_HOST || 'localhost';
   const port = process.env.DB_PORT || 28017;
   const dbName = process.env.DB_NAME || 'beautifulDay';

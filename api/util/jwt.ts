@@ -5,10 +5,6 @@ export interface TokenObject {
   profileId: string;
   googleSubId: string;
 }
-// export interface TokenObject {
-//   email: string;
-//   userId: string;
-// }
 
 export interface TokenResponse {
   givenName?: string
@@ -24,7 +20,6 @@ export function createToken(tokenObj: TokenObject): TokenResponse {
   const token = jwt.sign(tokenObj, appConfig.appSecret, { expiresIn: appConfig.tokenExpiration });
   return { token };
 }
-
 
 export async function verifyToken(token: string): Promise<TokenObject | null> {
   return new Promise<TokenObject | null>((res, rej) => {

@@ -1,3 +1,4 @@
+import { config } from 'dotenv';
 import * as express from 'express';
 import { Express  } from 'express';
 import * as path from 'path';
@@ -13,14 +14,15 @@ import * as swaggerDoc from './swagger.json';
 import { verifyToken } from './util/jwt';
 
 export default function createApp(): Express {
+  config();
   const app = express();
-  const clientDir = express.static(path.join(__dirname, '../public'));
+  const clientDir = path.join(__dirname, '../public');
 
   // in development, refresh angular on save just like ng serve does
   let livereloadServer: any;
   if (process.env.NODE_ENV !== 'production') {
       livereloadServer = livereload.createServer();
-      livereloadServer.watch(path.join(__dirname, '../public'));
+      livereloadServer.watch(clientDir);
       app.use(connectLivereload());
       livereloadServer.once('connection', () => {
               setTimeout(() => livereloadServer.refresh('/'), 100);
@@ -30,11 +32,7 @@ export default function createApp(): Express {
   mongo();
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(clientDir);
-  app.use('/signin', clientDir);
-  app.use('/home', clientDir);
-  app.use('/habit', clientDir);
-  app.use('/habit/new', clientDir);
+  app.use(express.static(clientDir));
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
   app.use(async (req, res, next) => {
     try {

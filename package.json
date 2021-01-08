@@ -13,8 +13,11 @@
     "cp:www": "mkdir -p ./dist/api/bin && cp api/bin/www ./dist/api/bin/",
     "cp:swag": "mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api",
     "cp:mongo": "mkdir -p ./dist/api/mongo && cp mongo/* ./dist/api/mongo",
+    "cp:config": "cp .env ./dist/.env",
     "mongo": "docker-compose -f docker-compose-dev.yml up -d --force-recreate",
-    "dev": "concurrently -k \"tsc -p ./api/tsconfig.api.json -w\" \"cd ./dist/api && nodemon ./bin/www --watch\" \"clear && ng build --watch\"",
+    "dev": "concurrently -k \"tsc -p ./api/tsconfig.api.json -w\" \"cd ./dist/api && nodemon -r ./bin/www --watch\" \"clear && ng build --watch\"",
+    "dev:client": "ng serve --port=3000",
+    "dev:api": "concurrently -k \"tsc -p ./api/tsconfig.api.json -w\" \"cd ./dist/api && nodemon ./bin/www --watch\"",
     "prod": "concurrently -k \"npm run clean && npm run cp:www && npm run cp:swag && ng build --aot --prod && tsc -p ./api/tsconfig.api.json && cd ./dist/api && node -r ./bin/www\"",
     "build:all": "npm run clean && npm run cp:www && npm run cp:swag && ng build --aot --prod && tsc -p ./api/tsconfig.api.json",
     "build:img": "ng build --aot --prod && mkdir -p ./dist/api/bin && cp ./api/bin/www ./dist/api/bin && tsc -p ./api/tsconfig.api.json && mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api"
