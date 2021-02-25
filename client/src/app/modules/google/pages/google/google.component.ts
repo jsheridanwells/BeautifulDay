@@ -10,7 +10,6 @@ import { AuthService } from 'client/src/app/core/services/auth.service';
 })
 export class GoogleComponent implements OnInit {
 
-
   constructor(
     private googleService: GoogleService,
     private authService: AuthService,

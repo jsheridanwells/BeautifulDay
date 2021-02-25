@@ -3,12 +3,20 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node dist/api/bin/www",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "rm -rf ./dist/api && rm -rf ./dist/public/",
+    "start:client": "ng serve",
+    "start:api": "nodemon",
+    "start:mongo": "",
+
+
+
+
+
     "clean:db": "sudo rm -rf ./data/db/*",
     "cp:www": "mkdir -p ./dist/api/bin && cp api/bin/www ./dist/api/bin/",
     "cp:swag": "mkdir -p ./dist/api && cp ./api/swagger.json ./dist/api",
