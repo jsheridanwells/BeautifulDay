@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean | Promise<boolean>  {
     const session = this.googleService.getToken();
     const token = this.authService.getJwt();
-    console.log('authguard check session', session);
     if (!session || !token) {
       this.handleReroute().then(() => false);
     }

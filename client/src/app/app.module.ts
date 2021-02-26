@@ -13,7 +13,6 @@ import { AuthComponent } from './layout/auth/auth.component';
 import { ContentComponent } from './layout/content/content.component';
 import { AuthGuard } from './core/guards/authGuard';
 import { JwtInterceptor } from './core/services/jwt.interceptor';
-// import { NoCacheInterceptor } from './core/services/nocache.interceptor';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FooterModalComponent } from './layout/footer/footer-modal/footer-modal.component';
@@ -44,13 +43,6 @@ import { FooterModalComponent } from './layout/footer/footer-modal/footer-modal.
       useClass: JwtInterceptor,
       multi: true
     },
-    // TODO : i thought this would fix the stale data problem. if it';s not useful, remove this and
-    // the nocache.interceptor.ts file
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: NoCacheInterceptor,
-    //   multi: true
-    // }
   ],
   bootstrap: [AppComponent],
 })

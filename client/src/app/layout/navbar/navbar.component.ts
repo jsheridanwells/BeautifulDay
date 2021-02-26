@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   faPlus: IconDefinition = faPlus;
   faCog: IconDefinition = faCog;
   showMenu: boolean = false
-  currentProfile: ProfileModel | null;
+  currentProfile: ProfileModel | null | undefined;
 
   ngOnInit(): void {
     this.showMenu = false;

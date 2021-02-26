@@ -25,7 +25,6 @@ export class NewHabitComponent implements OnInit {
   })
 
   onSubmit() {
-    console.log('new habit habitForm?', this.habitForm.value);
     this.habitService.createHabit(this.habitForm.value);
   }
 }

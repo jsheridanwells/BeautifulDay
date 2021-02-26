@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     private habitService: HabitService
   ) { }
 
-  currentProfile: ProfileModel | null;
+  currentProfile: ProfileModel | null | undefined;
   habitList: HabitModel[] = [];
 
   async ngOnInit() {

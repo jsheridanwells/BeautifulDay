@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import { ConnectionOptions } from 'mongoose';
 
-export function mongo(): void {
+export default (): void => {
   const uri = buildUri();
   const mongoConfig: ConnectionOptions = {
     useUnifiedTopology: true,
@@ -23,5 +23,3 @@ function buildUri(): string {
   const dbName = process.env.DB_NAME || 'beautifulDay';
   return `mongodb://${ appUsername }:${ appPassword }@${ host }:${ port }/${ dbName }`;
 }
-
-

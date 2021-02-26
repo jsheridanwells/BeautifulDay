@@ -3,11 +3,9 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest,
-  HTTP_INTERCEPTORS
+  HttpRequest
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AuthService} from './auth.service';
 
 @Injectable()
 export class NoCacheInterceptor implements HttpInterceptor {

@@ -1,5 +1,6 @@
 import ProfileModel from '../models/profile.model';
 import { createToken, TokenObject, TokenResponse } from '../util/jwt';
+import { TokenPayload } from '../types/TokenPayload';
 
 export async function getTokenForUser(tokenPayload: TokenPayload): Promise<TokenResponse> {
   let checkProfile = await ProfileModel.findOne({ googleSubId: tokenPayload.sub });
